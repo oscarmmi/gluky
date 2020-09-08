@@ -26,17 +26,14 @@ const actions = {
   getPosts: async ({ commit, rootState }) => {
     try {
       const res = await axios.get("/posts");
-      //const likes = rootState.likes.likes; // we access the state of likes module
+      const likes = rootState.likes.likes; // we access the state of likes module
       const comments = rootState.comments.comments; // we access the state of comments module
       const users = rootState.users.users; // we access the state of users module
       const posts = res.data.data; // we store the result of our api request
       posts.forEach(post => {
         // we get the user owner of the post
         const foundUser = users.find(user => user.id === post.user_id);
-        post.user_username ='';
-        if(foundUser!==undefined){
-          post.user_username = foundUser.name;
-        }
+        post.user_username = foundUser.username;
         post.comments = comments.filter(
           comment => comment.post_id === post.id // we check if comments belong to the post
         ).length; // we get the number of comments belong to the post
@@ -58,11 +55,11 @@ const actions = {
       });
       const users = rootState.users.users;
       const comments = rootState.comments.comments;
-      //const likes = rootState.likes.likes;
+      const likes = rootState.likes.likes;
       const post = result.data;
       post.user_username = users
         .filter(user => user.id == post.user_id)
-        .map(user => user.name)[0];
+        .map(user => user.username)[0];
       post.comments = comments.filter(
         comment => comment.post_id == post.id
       ).length;
@@ -104,13 +101,13 @@ const actions = {
     if (post) {
       const users = rootState.users.users;
       const comments = rootState.comments.comments;
-      //const likes = rootState.likes.likes;
+      const likes = rootState.likes.likes;
       const foundUser = users.find(user => user.id == post.user_id);
-      post.user_username = foundUser.name;
+      post.user_username = foundUser.username;
       post.comments = comments.filter(
         comment => comment.post_id == post.id
       ).length;
-      //post.likes=1;
+      post.likes=1;
       //post.likes = likes.filter(like => like.post_id == post.id);
       commit("setPostDetails", post);
     } else {

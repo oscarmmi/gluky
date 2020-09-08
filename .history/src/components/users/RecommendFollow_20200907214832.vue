@@ -6,6 +6,7 @@
         class="recomend-users"
         v-for="(user, index) in usersToFollow"
         :key="index"
+        @click="visitUser(user.id)"
       >
         <a>
           <h5>{{ user.name }}</h5>

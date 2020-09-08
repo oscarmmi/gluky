@@ -102,6 +102,7 @@ export default {
     },
     submit(e) {
       e.preventDefault();
+      console.info(this.checkForm());
       if (!this.checkForm()) {        
         this.newUser({
           username: this.name,

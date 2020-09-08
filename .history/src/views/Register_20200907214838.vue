@@ -102,7 +102,7 @@ export default {
     },
     submit(e) {
       e.preventDefault();
-      if (!this.checkForm()) {        
+      if (!this.checkForm()) {
         this.newUser({
           username: this.name,
           email: this.email,

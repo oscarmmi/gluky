@@ -32,11 +32,10 @@ const actions = {
       const posts = res.data.data; // we store the result of our api request
       posts.forEach(post => {
         // we get the user owner of the post
+        console.info(user);
+        console.info(user);
         const foundUser = users.find(user => user.id === post.user_id);
-        post.user_username ='';
-        if(foundUser!==undefined){
-          post.user_username = foundUser.name;
-        }
+        post.user_username = foundUser.name;
         post.comments = comments.filter(
           comment => comment.post_id === post.id // we check if comments belong to the post
         ).length; // we get the number of comments belong to the post

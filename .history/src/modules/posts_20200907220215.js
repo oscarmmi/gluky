@@ -34,7 +34,7 @@ const actions = {
         // we get the user owner of the post
         const foundUser = users.find(user => user.id === post.user_id);
         post.user_username ='';
-        if(foundUser!==undefined){
+        if(foundUser){
           post.user_username = foundUser.name;
         }
         post.comments = comments.filter(

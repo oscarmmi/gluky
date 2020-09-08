@@ -3,6 +3,7 @@
     <div>
       <transition name="bounce_" mode="out-in">
       </transition>
+      <span class="star">{{ likes.length }}</span>
     </div>
   </div>
 </template>

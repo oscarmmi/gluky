@@ -33,10 +33,8 @@ const actions = {
       posts.forEach(post => {
         // we get the user owner of the post
         const foundUser = users.find(user => user.id === post.user_id);
-        post.user_username ='';
-        if(foundUser!==undefined){
-          post.user_username = foundUser.name;
-        }
+        console.info(foundUser, foundUser.name);
+        post.user_username = foundUser.name;
         post.comments = comments.filter(
           comment => comment.post_id === post.id // we check if comments belong to the post
         ).length; // we get the number of comments belong to the post
